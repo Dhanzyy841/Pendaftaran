@@ -1,0 +1,474 @@
+:root {
+    --primary-color: #ff002b;
+    --primary-hover: #ff2a4b;
+    --secondary-color: #1e293b;
+    --accent-color: #ffb703;
+    --text-color: #0f172a;
+    --border-color: #cbd5e1;
+    --success-color: #10b981;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
+        linear-gradient(135deg, #cc0022 0%, #ff003c 50%, #800014 100%);
+    background-size: cover;
+    background-attachment: fixed;
+    
+    color: var(--text-color);
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px 40px 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Banner Angka 81 & Teks Dirgahayu */
+.hut-banner {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeInDown 0.8s ease-out;
+    z-index: 2;
+}
+
+.hut-banner h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+.hut-banner h2 span {
+    color: #ffb703;
+    font-size: 3.5rem;
+    display: inline-block;
+    transform: scale(1.1);
+    text-shadow: 0 0 20px rgba(255, 183, 3, 0.6);
+}
+
+.hut-banner p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* --- KOTAK FORMULIR UTAMA DENGAN GRADASI MERAH PUTIH & SHADOW --- */
+.form-container, .admin-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    border-radius: 24px;
+    
+    /* Efek Gradasi Merah ke Putih */
+    background: linear-gradient(to bottom, #ff002b 0%, #ffffff 40%, #ffffff 100%);
+    
+    /* Efek Bayangan Melayang (Shadow) */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(255, 0, 43, 0.2);
+    
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.admin-container {
+    max-width: 900px;
+    background: #ffffff;
+    display: none;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.header .icon-badge {
+    background: rgba(255, 255, 255, 0.9);
+    color: #ff002b;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px auto;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    font-size: 1.9rem;
+    color: #ffffff;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header p {
+    font-size: 0.95rem;
+    color: #f1f5f9;
+    line-height: 1.6;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 1.05rem;
+    color: #ff002b;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 35px 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 0, 43, 0.3), transparent);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    transition: all 0.25s ease;
+    background-color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff002b;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 0, 43, 0.15);
+}
+
+.radio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.radio-card {
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.radio-card input {
+    accent-color: #ff002b;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.radio-card:hover {
+    border-color: rgba(255, 0, 43, 0.5);
+}
+
+.radio-card.selected {
+    border-color: #ff002b;
+    background-color: rgba(255, 0, 43, 0.06);
+    color: #ff002b;
+    box-shadow: 0 4px 10px rgba(255, 0, 43, 0.1);
+}
+
+.dynamic-section {
+    background-color: rgba(255, 0, 43, 0.03);
+    border: 2px dashed rgba(255, 0, 43, 0.3);
+    padding: 22px;
+    border-radius: 16px;
+    margin-top: 25px;
+    display: none;
+    animation: slideDown 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dynamic-section.active {
+    display: block;
+}
+
+.team-member-input {
+    margin-bottom: 12px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 30px 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #334155;
+}
+
+.checkbox-container input {
+    accent-color: #ff002b;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #ff002b 0%, #cc0022 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 0, 43, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(255, 0, 43, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-toggle-mode {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--secondary-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.25s ease;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-toggle-mode:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Gaya Panel QR Code */
+.qr-section {
+    background: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    border: 2px solid #ff002b;
+    margin-top: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(255,0,43,0.1);
+}
+
+.qr-box {
+    display: inline-block;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    border: 4px solid #ff002b;
+    margin-top: 15px;
+}
+
+.qr-box img {
+    display: block;
+    margin: 0 auto;
+}
+
+.qr-caption {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ff002b;
+    text-transform: uppercase;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+th, td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 700;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-danger {
+    background-color: #ff002b;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #cc0022;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    filter: brightness(0.95);
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 90px 10px 20px 10px;
+    }
+    .hut-banner h2 {
+        font-size: 2rem;
+    }
+    .hut-banner h2 span {
+        font-size: 2.5rem;
+    }
+    .hut-banner p {
+        font-size: 0.9rem;
+    }
+    .form-container, .admin-container {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    .header h1 {
+        font-size: 1.5rem;
+        color: #ffffff;
+    }
+    .header p {
+        color: #f1f5f9;
+    }
+    .radio-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .btn-toggle-mode {
+        top: 15px;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100% - 20px);
+        text-align: center;
+    }
+}

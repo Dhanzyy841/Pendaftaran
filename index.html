@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Lomba HUT RI ke-81</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="btn-toggle-mode" id="btnToggle" onclick="toggleMode()">Menu Panitia/Admin 🔒</button>
+
+<div class="hut-banner">
+    <h2>DIRGAHAYU REPUBLIK INDONESIA Ke-<span>81</span></h2>
+    <p>Nusantara Baru, Indonesia Maju</p>
+</div>
+
+<div class="form-container" id="userFormSection">
+    <div class="header">
+        <div class="icon-badge">🇮🇩</div>
+        <h1>Formulir Pendaftaran Lomba</h1>
+        <p>Silakan isi data diri dengan benar dan pilih kategori serta lomba yang ingin diikuti.</p>
+    </div>
+
+    <form id="lombaForm" onsubmit="handleSubmit(event)">
+        <div class="section-title">Data Diri Peserta</div>
+        
+        <div class="form-group">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" required placeholder="Masukkan nama lengkap pendaftar">
+        </div>
+
+        <div class="form-group">
+            <label for="umur">Umur (Tahun)</label>
+            <input type="number" id="umur" min="1" max="100" required placeholder="Contoh: 9">
+        </div>
+
+        <div class="form-group">
+            <label>Jenis Kelamin</label>
+            <div class="radio-grid">
+                <label class="radio-card" id="label-l">
+                    <input type="radio" name="jk" value="Laki-laki" required id="radio-l" onclick="selectGender('Laki-laki')"> 
+                    Laki-laki
+                </label>
+                <label class="radio-card" id="label-p">
+                    <input type="radio" name="jk" value="Perempuan" id="radio-p" onclick="selectGender('Perempuan')"> 
+                    Perempuan
+                </label>
+            </div>
+        </div>
+
+        <div class="section-title">Kategori & Lomba</div>
+
+        <div class="form-group">
+            <label for="kategori">Pilih Kategori Usia</label>
+            <select id="kategori" required onchange="handleKategoriChange()">
+                <option value="" disabled selected>-- Klik untuk memilih kategori --</option>
+                <option value="k1">Kategori 1 (Usia 3–4 Tahun)</option>
+                <option value="k2">Kategori 2 (Usia 5–7 Tahun)</option>
+                <option value="k3">Kategori 3 (Usia 8–10 Tahun)</option>
+                <option value="kremaja">Kategori Remaja</option>
+                <option value="kibu">Kategori Ibu-Ibu</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="lombaWrapper" style="display:none;">
+            <label for="lomba">Pilih Jenis Lomba</label>
+            <select id="lomba" required onchange="handleLombaChange()">
+            </select>
+        </div>
+
+        <div id="teamSection" class="dynamic-section">
+            <div class="section-title" style="margin-top:0; font-size:1rem; color: var(--secondary-color);">Data Kelompok / Tim</div>
+            <div class="form-group">
+                <label for="namaTim">Nama Tim</label>
+                <input type="text" id="namaTim" placeholder="Masukkan nama kelompok/tim">
+            </div>
+            <div class="form-group">
+                <label>Nama Anggota Tim (Selain Pendaftar Utama)</label>
+                <div id="anggotaContainer">
+                </div>
+            </div>
+        </div>
+
+        <label class="checkbox-container">
+            <input type="checkbox" required>
+            <span>Saya menyatakan bahwa data yang saya isi sudah benar dan bersedia mengikuti seluruh peraturan perlombaan HUT RI.</span>
+        </label>
+
+        <button type="submit" class="btn-submit">Kirim Pendaftaran 🚀</button>
+    </form>
+</div>
+
+<div class="admin-container" id="adminSection">
+    <div class="header" style="background: transparent; margin-bottom: 35px;">
+        <div class="icon-badge" style="background: rgba(255, 0, 43, 0.1); color: #ff002b; box-shadow: none;">📊</div>
+        <h1 style="color: var(--secondary-color); text-shadow: none;">Data Pendaftaran Peserta (Admin)</h1>
+        <p style="color: #475569; text-shadow: none;">Halaman khusus panitia untuk memonitor, mengunduh, serta menghapus pendaftar.</p>
+    </div>
+
+    <div id="adminLoginArea">
+        <div class="form-group">
+            <label for="adminPassword">Password Admin</label>
+            <input type="password" id="adminPassword" placeholder="Masukkan sandi keamanan khusus panitia">
+        </div>
+        <button class="btn-submit" onclick="loginAdmin()">Masuk ke Panel Admin</button>
+    </div>
+
+    <div id="adminPanelArea" style="display: none;">
+        
+        <div class="qr-section">
+            <h3 style="color: var(--secondary-color); margin-bottom: 8px;">📢 Buat QR Code Pendaftaran</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 15px;">
+                Tempel alamat link pendaftaran Anda yang sudah online di bawah ini untuk membuat QR Code secara instan!
+            </p>
+            <div class="form-group" style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <input type="text" id="websiteUrlInput" placeholder="Contoh: https://username.github.io/lomba-ri">
+                <button class="btn-action btn-success" style="padding: 14px 20px; border-radius: 12px; font-weight: 700;" onclick="generateQRCode()">Buat QR 📲</button>
+            </div>
+            
+            <div id="qrResultContainer" style="display: none;">
+                <div class="qr-box">
+                    <img id="qrCodeImg" src="" alt="QR Code Pendaftaran">
+                    <div class="qr-caption">LOMBA HUT RI ke-81</div>
+                </div>
+                <p style="font-size: 0.8rem; color: #475569; margin-top: 10px;">
+                    💡 *Tips: Klik kanan pada gambar QR Code di atas lalu pilih <strong>"Save Image As"</strong> untuk dicetak di selebaran.*
+                </p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table id="pesertaTable">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Peserta</th>
+                        <th>Umur</th>
+                        <th>JK</th>
+                        <th>Kategori</th>
+                        <th>Lomba</th>
+                        <th>Data Kelompok</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="pesertaTableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-actions">
+            <button class="btn-action btn-success" onclick="exportToCSV()">Unduh Data (Format Excel / CSV)</button>
+            <button class="btn-action btn-danger" onclick="clearAllData()">Hapus Semua Data</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
